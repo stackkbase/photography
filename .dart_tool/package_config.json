@@ -74,6 +74,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "file_picker",
+      "rootUri": "file:///Users/kushalprakash/.pub-cache/hosted/pub.dartlang.org/file_picker-3.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "firebase_auth",
       "rootUri": "file:///Users/kushalprakash/.pub-cache/hosted/pub.dartlang.org/firebase_auth-4.0.1",
       "packageUri": "lib/",
@@ -110,6 +116,24 @@
       "languageVersion": "2.16"
     },
     {
+      "name": "firebase_storage",
+      "rootUri": "file:///Users/kushalprakash/.pub-cache/hosted/pub.dartlang.org/firebase_storage-11.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_storage_platform_interface",
+      "rootUri": "file:///Users/kushalprakash/.pub-cache/hosted/pub.dartlang.org/firebase_storage_platform_interface-4.1.20",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
+      "name": "firebase_storage_web",
+      "rootUri": "file:///Users/kushalprakash/.pub-cache/hosted/pub.dartlang.org/firebase_storage_web-3.3.11",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///Users/kushalprakash/fvm/versions/stable/packages/flutter",
       "packageUri": "lib/",
@@ -118,6 +142,12 @@
     {
       "name": "flutter_lints",
       "rootUri": "file:///Users/kushalprakash/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_plugin_android_lifecycle",
+      "rootUri": "file:///Users/kushalprakash/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.7",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -174,6 +204,12 @@
       "rootUri": "file:///Users/kushalprakash/.pub-cache/hosted/pub.dartlang.org/google_sign_in_web-0.10.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "http",
+      "rootUri": "file:///Users/kushalprakash/.pub-cache/hosted/pub.dartlang.org/http-0.13.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
     },
     {
       "name": "http_parser",
@@ -386,7 +422,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-10-19T09:11:11.631786Z",
+  "generated": "2022-10-19T10:38:32.514534Z",
   "generator": "pub",
   "generatorVersion": "2.18.2"
 }
