@@ -70247,7 +70247,7 @@ A.bw(r,$.dw(),!1)
 return new A.Qe(A.as2(new A.cF(r)),B.j)}}
 A.Qe.prototype={
 H(a){var s=null,r=a.a3(t.w).f
-return A.a8y(s,new A.G(4280693304),A.eA(s,A.ns(A.a([B.Ny,B.vX,A.hF(A.ic(new A.Mf(new A.agY(this,a),B.ln,"Sign in with Google",s),30,230),s,s),B.vX,B.NB],t.p),B.aF,B.hi,B.az),B.n,s,s,s,s,s,s,s,s,s,r.a.a))},
+return A.a8y(s,new A.G(4211804432),A.eA(s,A.ns(A.a([B.Ny,B.vX,A.hF(A.ic(new A.Mf(new A.agY(this,a),B.ln,"Sign in with Google",s),30,230),s,s),B.vX,B.NB],t.p),B.aF,B.hi,B.az),B.n,s,s,s,s,s,s,s,s,s,r.a.a))},
 kQ(){var s=0,r=A.M(t.y),q,p=2,o,n=this,m,l,k,j,i,h,g,f,e,d,c,b
 var $async$kQ=A.N(function(a,a0){if(a===1){o=a0
 s=p}while(true)switch(s){case 0:e=null
@@ -70335,7 +70335,7 @@ H(a){var s,r,q=this,p=null,o=t.p,n=A.a87(A.a([new A.vP(B.Ca,"Select File",q.gPj(
 l=A.auz(B.NC,l)
 s=A.hF(A.ic(A.hS(!1,!0,B.D2,p,!0,p,p,p,p,p,p,p,p,p,new A.ah3(q,a),p,p,p,p),p,300),p,p)
 r=q.a.d
-return A.a8y(p,new A.G(4280693304),A.eA(p,A.hF(A.ns(A.a([n,B.J9,m,k,l,B.kF,s,B.kF,A.auz(A.hF(A.ic(A.hS(!1,!0,B.D1,p,!0,p,p,p,p,p,p,p,p,p,new A.ah4(q,a),p,p,p,p),p,300),p,p),r==="Klmn.nandini@gmail.com"),B.kF,A.hF(A.ic(A.hS(!1,!0,B.D3,p,!0,p,p,p,p,p,p,p,p,p,new A.ah5(q,a),p,p,p,p),p,300),p,p)],o),B.aF,B.hi,B.az),p,p),B.n,p,p,p,p,p,p,new A.aD(32,32,32,32),p,p,p))},
+return A.a8y(p,new A.G(4278913296),A.eA(p,A.hF(A.ns(A.a([n,B.J9,m,k,l,B.kF,s,B.kF,A.auz(A.hF(A.ic(A.hS(!1,!0,B.D1,p,!0,p,p,p,p,p,p,p,p,p,new A.ah4(q,a),p,p,p,p),p,300),p,p),r==="klmn.nandini@gmail.com"),B.kF,A.hF(A.ic(A.hS(!1,!0,B.D3,p,!0,p,p,p,p,p,p,p,p,p,new A.ah5(q,a),p,p,p,p),p,300),p,p)],o),B.aF,B.hi,B.az),p,p),B.n,p,p,p,p,p,p,new A.aD(32,32,32,32),p,p,p))},
 ra(){var s=0,r=A.M(t.z),q,p=this,o,n
 var $async$ra=A.N(function(a,b){if(a===1)return A.J(b,r)
 while(true)switch(s){case 0:s=3
@@ -76546,7 +76546,7 @@ B.fE=new A.nG(0,"none")
 B.cw=new A.nG(1,"low")
 B.mz=new A.nG(2,"medium")
 B.mA=new A.nG(3,"high")
-B.BK=new A.qB("AIzaSyBDuV852ogvXe0RhC7W3ZzM0cXJLs1ZOWk","1:1009983760292:web:57d41790490e94b6768331","1009983760292","fe-slot-analysis","fe-slot-analysis.firebaseapp.com",null,"fe-slot-analysis.appspot.com","G-XPZ2F9JRXJ",null,null,null,null,null,null)
+B.BK=new A.qB("AIzaSyB3MTdro0anCZ0H4Ogu8C0ATB_iSqXrpeI","1:48473023840:web:6d67d22298a6843de36a05","48473023840","customer-portal-fac87","customer-portal-fac87.firebaseapp.com",null,"customer-portal-fac87.appspot.com","G-D2VZD6PVTM",null,null,null,null,null,null)
 B.D=new A.X(0,0)
 B.BL=new A.HO(B.D,B.D)
 B.BM=new A.x2(0,"tight")
