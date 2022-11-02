@@ -15,7 +15,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   late String _email, _password;
   bool _loading = false;
-  late FocusNode _myFocusNode;
+  FocusNode? _myFocusNode;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   @override
   void initState() {
@@ -25,7 +25,6 @@ class _SignInState extends State<SignIn> {
 
   @override
   void dispose() {
-    _myFocusNode.dispose();
     super.dispose();
   }
 
@@ -49,11 +48,11 @@ class _SignInState extends State<SignIn> {
                             style: TextStyle(color: Colors.white),
                             focusNode: _myFocusNode,
                             onTap: () {
-                              FocusScopeNode currentFocus =
+                              /* FocusScopeNode currentFocus =
                                   FocusScope.of(context);
                               if (!currentFocus.hasPrimaryFocus) {
                                 currentFocus.unfocus();
-                              }
+                              } */
                             },
                             validator: (input) {
                               if (input!.isEmpty) {
@@ -100,13 +99,7 @@ class _SignInState extends State<SignIn> {
                                 return null;
                               }
                             },
-                            onTap: () {
-                              FocusScopeNode currentFocus =
-                                  FocusScope.of(context);
-                              if (!currentFocus.hasPrimaryFocus) {
-                                currentFocus.unfocus();
-                              }
-                            },
+                            onTap: () {},
                             onSaved: (input) => _password = input!,
                             decoration: InputDecoration(
                               labelText: 'Enter your password',

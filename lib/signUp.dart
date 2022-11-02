@@ -139,13 +139,7 @@ class _SignUpState extends State<SignUp> {
                                 return null;
                               }
                             },
-                            onTap: () {
-                              FocusScopeNode currentFocus =
-                                  FocusScope.of(context);
-                              if (!currentFocus.hasPrimaryFocus) {
-                                currentFocus.unfocus();
-                              }
-                            },
+                            onTap: () {},
                             onSaved: (input) => _name = input!,
                             decoration: InputDecoration(
                               labelText: 'Name',
@@ -171,13 +165,7 @@ class _SignUpState extends State<SignUp> {
                           child: TextFormField(
                             style: TextStyle(color: Colors.white),
                             focusNode: myFocusNode,
-                            onTap: () {
-                              FocusScopeNode currentFocus =
-                                  FocusScope.of(context);
-                              if (!currentFocus.hasPrimaryFocus) {
-                                currentFocus.unfocus();
-                              }
-                            },
+                            onTap: () {},
                             validator: (input) {
                               if (input!.isEmpty) {
                                 return 'Please type a Email';
@@ -225,13 +213,7 @@ class _SignUpState extends State<SignUp> {
                                 return null;
                               }
                             },
-                            onTap: () {
-                              FocusScopeNode currentFocus =
-                                  FocusScope.of(context);
-                              if (!currentFocus.hasPrimaryFocus) {
-                                currentFocus.unfocus();
-                              }
-                            },
+                            onTap: () {},
                             onSaved: (input) => _password = input!,
                             decoration: InputDecoration(
                               labelText: 'Password',

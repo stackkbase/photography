@@ -55,6 +55,14 @@ class _MainPageState extends State<MainPage> {
     //'assets/icons/utilities/electricity.png',
   ];
 
+  List<IconData> _icons = [
+// The underscore declares a variable as private in dart.
+    Icons.file_open,
+    Icons.upload_file,
+    Icons.folder,
+    Icons.logout
+  ];
+
   @override
   Widget build(BuildContext context) {
     void _showDialog() {
@@ -114,76 +122,55 @@ class _MainPageState extends State<MainPage> {
                 children: _listItem.map(
                   (item) {
                     int idx = _listItem.indexOf(item);
-                    return Stack(
-                      alignment: AlignmentDirectional.center,
-                      children: [
-                        InkWell(
-                          onTap: () async {
-                            if (idx == 3) {
-                              await auth.signOut();
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LoginPage()),
-                              );
-                            } else if (idx == 1) {
-                              if (uploading == true) return;
-                              if (fileName == '') {
-                                _showDialog();
-                                return;
-                              }
-                              uploadFile();
-                            } else if (idx == 0)
-                              selectFile();
-                            else if (idx == 2)
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ClientPage(
-                                          title: widget.uid!,
-                                        )),
-                              );
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  offset: Offset(0, 1),
-                                  color: Colors.black12,
-                                  blurRadius: 10,
-                                )
-                              ],
-                            ),
-                            child: Center(
-                              child: Text(
-                                _listItem[idx],
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
+                    return InkWell(
+                      onTap: () async {
+                        if (idx == 3) {
+                          await auth.signOut();
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()),
+                          );
+                        } else if (idx == 1) {
+                          if (uploading == true) return;
+                          if (fileName == '') {
+                            _showDialog();
+                            return;
+                          }
+                          uploadFile();
+                        } else if (idx == 0)
+                          selectFile();
+                        else if (idx == 2)
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ClientPage(
+                                      title: widget.uid!,
+                                    )),
+                          );
+                      },
+                      child: ListTile(
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.black, width: 1),
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        Positioned(
-                          left: 12,
-                          top: 32,
-                          child: Container(
-                            width: 35,
-                            height: 35,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: CircleAvatar(
-                              backgroundColor: Colors.transparent,
-                              radius: 10,
-                              child: Padding(
-                                padding: const EdgeInsets.all(3.0),
-                                child: Image.asset(_listIcons[idx]),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                        tileColor: Colors.white,
+                        title: Padding(
+                            padding: EdgeInsets.only(top: 35),
+                            child: Text(
+                              _listItem[idx],
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            )),
+                        leading: Padding(
+                            padding: EdgeInsets.only(top: 10),
+                            child: Icon(
+                              _icons[idx],
+                              color: Colors.black,
+                              size: 55,
+                            )),
+                      ),
                     );
                   },
                 ).toList(),
