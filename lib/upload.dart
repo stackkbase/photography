@@ -16,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'client_view.dart';
 import 'admin_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'login_page.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({this.uid, this.email});
@@ -35,63 +36,251 @@ class _MainPageState extends State<MainPage> {
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
+  final List<String> _listItem = [
+    'Select File',
+    'Upload',
+    'View Files',
+    'Sign Out',
+    // 'Admin',
+    //'Pay Bills',
+  ];
+
+  final List<String> _listIcons = [
+    'folder.png',
+    'submit.png',
+    'file.png',
+    'shutdown.png',
+    // 'admin.png'
+    //'assets/app/app-icon.png',
+    //'assets/icons/utilities/electricity.png',
+  ];
+
   @override
   Widget build(BuildContext context) {
+    void _showDialog() {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Padding(
+            padding: EdgeInsets.fromLTRB(5, 50, 5, 10),
+            child: AlertDialog(
+              elevation: 24.0,
+              // shape: RoundedRectangleBorder(
+              // borderRadius: BorderRadius.all(Radius.circular(40.0))
+              // ),
+              backgroundColor: Colors.blueGrey,
+              title: null,
+              content: Text(
+                'Please select a file to upload',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+
+              actions: <Widget>[
+                ElevatedButton(
+                  child: Text(
+                    "Close",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
     // fileName = file != null ? basename(file!.path) : 'No File Selected';
 
     return Scaffold(
       backgroundColor: Color(0xff0B0910),
-      body: Container(
-        padding: EdgeInsets.all(32),
+      body: SafeArea(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                  height: 50,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+            child: Container(
+          width: 400,
+          padding: const EdgeInsets.only(top: 200),
+          child: CustomScrollView(
+            slivers: [
+              SliverGrid.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 2 / 1,
+                children: _listItem.map(
+                  (item) {
+                    int idx = _listItem.indexOf(item);
+                    return Stack(
+                      alignment: AlignmentDirectional.center,
                       children: [
-                        ButtonWidget(
-                          text: 'Select File',
-                          icon: Icons.attach_file,
-                          onClicked: selectFile,
+                        InkWell(
+                          onTap: () async {
+                            if (idx == 3) {
+                              await auth.signOut();
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()),
+                              );
+                            } else if (idx == 1) {
+                              if (uploading == true) return;
+                              if (fileName == '') {
+                                _showDialog();
+                                return;
+                              }
+                              uploadFile();
+                            } else if (idx == 0)
+                              selectFile();
+                            else if (idx == 2)
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ClientPage(
+                                          title: widget.uid!,
+                                        )),
+                              );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  offset: Offset(0, 1),
+                                  color: Colors.black12,
+                                  blurRadius: 10,
+                                )
+                              ],
+                            ),
+                            child: Center(
+                              child: Text(
+                                _listItem[idx],
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
                         ),
-                        const SizedBox(width: 15),
-                        ButtonWidget(
-                          text: 'Upload',
-                          icon: Icons.cloud_upload_outlined,
-                          onClicked: uploadFile,
-                        )
-                      ])),
+                        Positioned(
+                          left: 12,
+                          top: 32,
+                          child: Container(
+                            width: 35,
+                            height: 35,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              radius: 10,
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Image.asset(_listIcons[idx]),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                ).toList(),
+              ),
+              SliverToBoxAdapter(
+                  child: SizedBox(
+                height: 10,
+              )),
+              SliverToBoxAdapter(
+                  child: Visibility(
+                      visible: widget.email == 'klmn.nandini@gmail.com',
+                      //visible: widget.email == 'kushal@poddl.work',
+                      child: Center(
+                          child: SizedBox(
+                              width: 300,
+                              child: InkWell(
+                                  onTap: () async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => AdminPage(
+                                                title: widget.uid!,
+                                              )),
+                                    );
+                                  },
+                                  child: const ListTile(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(10),
+                                            topRight: Radius.circular(10),
+                                            bottomRight: Radius.circular(10),
+                                            bottomLeft: Radius.circular(10))),
+                                    tileColor: Colors.blueGrey,
+                                    leading: Icon(
+                                      Icons.file_present_rounded,
+                                      color: Colors.white,
+                                    ),
+                                    title: Text(
+                                      'Admin Page',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    trailing: Icon(
+                                      Icons.arrow_right_sharp,
+                                      color: Colors.white,
+                                    ),
+                                  )))))),
 
-              SizedBox(
+              SliverToBoxAdapter(
+                  child: SizedBox(
                 height: 100,
                 width: 400,
                 child: Lottie.asset(
                   'assets/loading.json',
                   repeat: uploading == true,
                 ),
-              ),
-              Text(
-                fileName,
-                style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white),
-              ),
-              //const SizedBox(height: 20),
-              SizedBox(
-                  height: 50,
-                  width: 150,
+              )),
+              SliverToBoxAdapter(
                   child: Visibility(
-                      visible: uploading,
-                      child: const Text(
-                        'Uploading..',
-                        style: TextStyle(color: Colors.white),
-                      ))),
-              const SizedBox(height: 20),
-              Center(
+                visible: fileName != '',
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10))),
+                  tileColor: Colors.blueGrey,
+                  leading: InkWell(
+                    child: Icon(
+                      Icons.delete,
+                      color: Colors.red,
+                    ),
+                    onTap: () {
+                      fileName = '';
+                      setState(() {});
+                    },
+                  ),
+                  title: Text(fileName, style: TextStyle(color: Colors.white)),
+                  trailing: ElevatedButton(
+                    child: Text('Upload'),
+                    onPressed: uploadFile,
+                  ),
+                ),
+              )),
+              //const SizedBox(height: 20),
+              SliverToBoxAdapter(
+                  child: SizedBox(
+                      height: 50,
+                      width: 150,
+                      child: Visibility(
+                          visible: uploading,
+                          child: const Text(
+                            'Uploading..',
+                            style: TextStyle(color: Colors.white),
+                          )))),
+              /*   const SliverToBoxAdapter(child: SizedBox(height: 20)),
+              SliverToBoxAdapter(
                   child: SizedBox(
                       height: 50,
                       width: 300,
@@ -126,9 +315,10 @@ class _MainPageState extends State<MainPage> {
                               color: Colors.black,
                             ),
                           )))),
-              const SizedBox(height: 20),
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
               Visibility(
                   visible: widget.email == 'klmn.nandini@gmail.com',
+                  //visible: widget.email == 'kushal@poddl.work',
                   child: Center(
                       child: SizedBox(
                           width: 300,
@@ -149,7 +339,7 @@ class _MainPageState extends State<MainPage> {
                                         topRight: Radius.circular(10),
                                         bottomRight: Radius.circular(10),
                                         bottomLeft: Radius.circular(10))),
-                                tileColor: Color(0xff0B0910),
+                                tileColor: Colors.blueGrey,
                                 leading: Icon(
                                   Icons.file_present_rounded,
                                   color: Colors.white,
@@ -167,16 +357,21 @@ class _MainPageState extends State<MainPage> {
               //   'Signed In as: ' + widget.email!,
               //   style: const TextStyle(color: Colors.white),
               // ),
-              const SizedBox(
+              const SliverToBoxAdapter(
+                  child: SizedBox(
                 height: 20,
-              ),
-              Center(
+              )),
+              SliverToBoxAdapter(
                   child: SizedBox(
                       width: 300,
                       child: InkWell(
                           onTap: () async {
                             await auth.signOut();
-                            Navigator.pop(context);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                            );
                           },
                           child: const ListTile(
                             shape: RoundedRectangleBorder(
@@ -185,19 +380,19 @@ class _MainPageState extends State<MainPage> {
                                     topRight: Radius.circular(10),
                                     bottomRight: Radius.circular(10),
                                     bottomLeft: Radius.circular(10))),
-                            tileColor: Colors.white,
+                            tileColor: Colors.redAccent,
                             title: Text(
                               'Sign Out',
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(color: Colors.white),
                             ),
                             trailing: Icon(
                               Icons.logout_sharp,
                               color: Colors.black,
                             ),
-                          )))),
+                          )))), */
             ],
           ),
-        ),
+        )),
       ),
     );
   }

@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'upload.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'signUp.dart';
+import 'signIn.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -38,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
           ), */
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             const Text(
-              "Welcome to my File Management App",
+              "Welcome to Customer Portal",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -46,6 +48,17 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(
               height: 30,
+            ),
+            SignIn(),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              '----- Or -----',
+              style: TextStyle(color: Colors.white),
+            ),
+            SizedBox(
+              height: 10,
             ),
             Center(
                 child: SizedBox(
